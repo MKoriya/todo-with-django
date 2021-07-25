@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+<div>
+    <h1>SignUp</h1>
+    <div>
+        <form action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+
+            <span>
+                {{ form.username.label }}
+                {{ form.username }}
+            </span>
+            <span>
+                {{ form.first_name.label }}
+                {{ form.first_name }}
+            </span>
+            <span>
+                {{ form.last_name.label }}
+                {{ form.last_name }}
+            </span>
+            <span>
+                {{ form.email.label }}
+                {{ form.email }}
+            </span>
+            <span>
+                {{ form.password1.label }}
+                {{ form.password1 }}
+            </span>
+            <span>
+                {{ form.password2.label }}
+                {{ form.password2 }}
+            </span>
+            <button type="submit" name="submit">Submit</button>
+        </form>
+        <div>
+            {{ form.errors }}
+        </div>
+    </div>
+    <div>
+        <span>Already have an account? <a href="{% url 'login' %}">login</a></span>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<div>
+    <form action="{% url 'update' pk %}" method="POST">
+        {% csrf_token %}
+        <span>
+            {{ form.title.label }}
+            {{ form.title}}
+        </span>
+        <span>
+            {{ form.description.label }}
+            {{ form.description }}
+        </span>
+        <span>
+            {{ form.finished.label }}
+            {{ form.finished }}
+        </span>
+        <input type="submit" name="update">
+    </form>
+    <div>
+        {{ form.errors }}
+    </div>
+</div>
+
+{% endblock %}

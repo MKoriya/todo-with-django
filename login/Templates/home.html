@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title%}Home Page{% endblock %}
+
+
+{% block body %}
+
+
+<div>
+    <h1>HomePage</h1>
+    <button>
+        <a href="{% url 'login' %}">Login</a>
+    </button>
+    <button>
+        <a href="{% url 'signup' %}">SignUp</a>
+    </button>
+</div>
+
+
+{% endblock %}

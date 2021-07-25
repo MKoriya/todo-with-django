@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<div>
+    <form method="POST" action="{% url 'create'  %}">
+        {% csrf_token %}
+        <span>
+            {{ createForm.title.label}}
+            {{ createForm.title}}
+        </span>
+        <span>
+            {{ createForm.description.label}}
+            {{ createForm.description}}
+        </span>
+        <input type="submit" name="Create Note">
+    </form>
+    <div>
+        {{ createForm.errors }}
+    </div>
+</div>
+
+{% endblock %}

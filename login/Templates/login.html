@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+<div>
+    <h1>Login</h1>
+    <div>
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <span>
+                {{ form }}
+            </span>
+            <button type="submit" name="submit">Submit</button>
+        </form>
+        <div>
+            {{ form.errors }}
+        </div>
+    </div>
+    <div>
+        <span>
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </span>
+        <span>
+            {% if e is not None %}
+                <p>{{e}}</p>
+            {% endif %}
+        </span>
+    </div>
+    <div>
+        <span>Don't have an account? <a href="{% url 'signup' %}">SignUp</a></span>
+    </div>
+</div>
+{% endblock %}
+

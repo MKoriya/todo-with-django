@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title%}Dashboard{% endblock%}
+{% block javascript %}
+    <script src="{% static 'dashboard.js' %}" defer></script>
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+{% endblock %}
+
+{% block body %}
+<div>
+    <p>
+        <h3>Hello, {{ request.user }}</h3>
+        <a href="{% url 'logout' %}">LogOut</a>
+    </p>
+</div>
+<div class="center">
+    <table class="table">
+        <tr>
+            <th colspan="5" class="head">Dashboard</th>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <th>Created At</th>
+            <th>Description</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for task in tasks %}
+            {% if task.finished == True %}
+                <tr class="row">
+                    <td><strike>{{ task.title }}</strike></td>
+                    <td><strike>{{ task.created }}</strike></td>
+                    <td><strike>{{ task.description }}</strike></td>
+                    <td><a href="{% url 'update' task.id %}">Update</a></td>
+                    <td><a href="{% url 'delete' task.id %}" data-confirm="Are You Sure?">Delete</a></td>
+                </tr>
+            {% else %}
+                <tr class="row">
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.created }}</td>
+                    <td>{{ task.description }}</td>
+                    <td><a href="{% url 'update' task.id %}">Update</a></td>
+                    <td><a href="{% url 'delete' task.id %}" data-confirm="Are You Sure?">Delete</a></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    <div class="buttons">
+        <button><a href="{% url 'create' %}" >CreateNew</a></button>
+    </div>
+</div>
+
+{% endblock %}

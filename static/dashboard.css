@@ -1,0 +1,13 @@
+table, th, td {
+        border: 1px solid #000;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 15px;
+    }
+
+    .head {
+        font-size: 200%;
+    }
