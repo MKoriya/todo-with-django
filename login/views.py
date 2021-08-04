@@ -40,13 +40,13 @@ def signUpView(request):
 
     if request.method == 'POST':
         data = request.POST
-        try:
-            userForm = CreateUserFrom(data)
-            if userForm.is_valid():
-                userForm.save()
+
+        userForm = CreateUserFrom(data)
+        if userForm.is_valid():
+            userForm.save()
             return redirect('login')
-        except ValidationError:
-            context = {'error': 'Error!! Please Try Again.'}
+        else:
+            context = {'error': "Error!! Password Must contain atleast 8 character and can't be entirely numeric"}
             return render(request, 'signup.html', context=context)
 
 @login_required(login_url='login')
